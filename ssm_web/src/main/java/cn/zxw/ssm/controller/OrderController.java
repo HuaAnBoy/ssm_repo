@@ -48,7 +48,19 @@ public class OrderController {
 //        添加上集合
         mv.addObject("orderPageInfo",orderPageInfo);
 //        返回的视图
-        mv.setViewName("orders-page-list");
+        mv.setViewName("orders-list");
+        return mv;
+    }
+
+    @RequestMapping("findById.do")
+    public ModelAndView findById(String id) throws Exception {
+        ModelAndView mv = new ModelAndView();
+
+//        调用service
+       Order order = orderService.findById(id);
+//       返回视图，将查询数据返回去
+        mv.addObject("orders",order);
+        mv.setViewName("orders-show");
         return mv;
     }
 }
