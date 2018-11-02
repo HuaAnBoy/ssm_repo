@@ -1,14 +1,13 @@
 package cn.zxw.ssm.domain;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author zhangxiongwei
  * @data 2018/11/2
- * @time 8:45
+ * @time 14:39
  */
-public class User implements Serializable {
+public class UserInfo {
 
     private String id;
     private String username;
