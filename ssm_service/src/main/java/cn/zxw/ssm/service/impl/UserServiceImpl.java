@@ -4,6 +4,7 @@ import cn.zxw.ssm.dao.UserDao;
 import cn.zxw.ssm.domain.Role;
 import cn.zxw.ssm.domain.UserInfo;
 import cn.zxw.ssm.service.UserService;
+import cn.zxw.ssm.utils.BCryptPasswordEncoderUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -21,11 +22,12 @@ import java.util.List;
  * @time 14:57
  */
 @Service("userService")
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -41,7 +43,7 @@ public class UserServiceImpl implements UserService {
 //        调用本类方法
         List<SimpleGrantedAuthority> authority = getAuthority(roles);
 
-        User user = new User(userInfo.getUsername(), "{noop}" + userInfo.getPassword(),
+        User user = new User(userInfo.getUsername(), userInfo.getPassword(),
                 userInfo.getStatus() == 0 ? false : true, true, true, true, authority);
         return user;
     }
@@ -54,5 +56,26 @@ public class UserServiceImpl implements UserService {
         }
 
         return authorityList;
+    }
+
+    @Override
+    public List<UserInfo> findAll() throws Exception {
+
+        return userDao.findAll();
+    }
+
+    @Override
+    public void save(UserInfo user) throws Exception {
+
+        String bef_pwd = user.getPassword();
+        user.setPassword(BCryptPasswordEncoderUtils.getEncode(bef_pwd));
+
+        userDao.save(user);
+    }
+
+    @Override
+    public UserInfo findById(String id) throws Exception {
+
+        return userDao.findById(id);
     }
 }

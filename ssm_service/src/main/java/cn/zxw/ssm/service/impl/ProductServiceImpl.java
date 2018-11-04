@@ -15,7 +15,7 @@ import java.util.List;
  * @time 11:10
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void save(Product product) {
+    public void save(Product product) throws Exception {
         productDao.save(product);
     }
 }

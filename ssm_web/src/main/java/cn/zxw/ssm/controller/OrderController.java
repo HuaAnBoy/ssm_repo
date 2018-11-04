@@ -38,7 +38,7 @@ public class OrderController {
 
 
     @RequestMapping("findAll.do")
-    public ModelAndView findAll(@RequestParam(name = "page",required = true,defaultValue = "1") Integer page,@RequestParam(name = "size",required = true,defaultValue = "4") Integer size) throws Exception {
+    public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue = "1") Integer page, @RequestParam(name = "size", required = true, defaultValue = "4") Integer size) throws Exception {
 
         ModelAndView mv = new ModelAndView();
 //        调用service
@@ -46,7 +46,7 @@ public class OrderController {
 //        获得分页信息
         PageInfo<Order> orderPageInfo = new PageInfo<>(orderList);
 //        添加上集合
-        mv.addObject("orderPageInfo",orderPageInfo);
+        mv.addObject("orderPageInfo", orderPageInfo);
 //        返回的视图
         mv.setViewName("orders-list");
         return mv;
@@ -57,9 +57,9 @@ public class OrderController {
         ModelAndView mv = new ModelAndView();
 
 //        调用service
-       Order order = orderService.findById(id);
+        Order order = orderService.findById(id);
 //       返回视图，将查询数据返回去
-        mv.addObject("orders",order);
+        mv.addObject("orders", order);
         mv.setViewName("orders-show");
         return mv;
     }

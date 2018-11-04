@@ -22,5 +22,5 @@ public interface ProductService {
      * 保存方法
      * @param product
      */
-    void save(Product product);
+    void save(Product product) throws Exception;
 }

@@ -12,6 +12,13 @@ import java.util.List;
  */
 public interface TravellerDao {
 
+    /**
+     * 通过订单id来查询
+     *
+     * @param ordersId
+     * @return
+     * @throws Exception
+     */
     @Select("select * from traveller where id in (select travellerId from order_traveller where orderId = #{ordersId})")
     List<Traveller> findByOrderId(String ordersId) throws Exception;
 }

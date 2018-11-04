@@ -23,7 +23,7 @@ public class ProductController {
     private ProductService productService;
 
     @RequestMapping("/findAll.do")
-    public ModelAndView findAll() throws Exception{
+    public ModelAndView findAll() throws Exception {
 //        创建对象
         ModelAndView mv = new ModelAndView();
 //        调用service
@@ -35,7 +35,7 @@ public class ProductController {
     }
 
     @RequestMapping("/save.do")
-    public String save(Product product){
+    public String save(Product product) throws Exception {
 //        调用service
         productService.save(product);
 //        返回关键字，重定向到findAll

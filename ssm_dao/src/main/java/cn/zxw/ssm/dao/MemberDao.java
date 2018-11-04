@@ -13,8 +13,10 @@ public interface MemberDao {
 
     /**
      * 通过id查询一个
+     *
      * @param id
      * @return
+     * @throws Exception
      */
     @Select("select * from member where id = #{id}")
     Member findOneById(String id) throws Exception;

@@ -15,6 +15,7 @@ public interface ProductDao {
 
     /**
      * 查找所有
+     *
      * @return
      * @throws Exception
      */
@@ -23,17 +24,21 @@ public interface ProductDao {
 
     /**
      * 保存商品信息
+     *
      * @param product
+     * @throws Exception
      */
     @Insert("insert into product(productNum,productName,cityName,departureTime,productPrice,productDesc,productStatus)" +
             "values(#{productNum},#{productName},#{cityName},#{departureTime},#{productPrice},#{productDesc},#{productStatus})")
-    void save(Product product);
+    void save(Product product) throws Exception;
 
     /**
      * 通过id查找一个
+     *
      * @param id
      * @return
+     * @throws Exception
      */
     @Select("select * from product where id = #{id}")
-    Product findOneById(String id);
+    Product findOneById(String id) throws Exception;
 }
