@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class RoleServiceImol implements RoleService {
+public class RoleServiceImpl implements RoleService {
 
     @Autowired
     private RoleDao roleDao;
@@ -37,6 +37,8 @@ public class RoleServiceImol implements RoleService {
     @Override
     public Role findById(String id) throws Exception {
 
-        return roleDao.findBuId(id);
+        Role ro = roleDao.findById(id);
+        System.out.println(ro);
+        return ro;
     }
 }

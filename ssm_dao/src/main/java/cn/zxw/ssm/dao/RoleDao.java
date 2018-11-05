@@ -65,7 +65,9 @@ public interface RoleDao {
     @Results({
             @Result(id = true,property = "id",column = "id"),
             @Result(property = "roleName", column = "roleName"),
-            @Result(property = "roleDesc", column = "roleDesc")
+            @Result(property = "roleDesc", column = "roleDesc"),
+            @Result(property = "permissions", column = "id", javaType = List.class,
+                    many = @Many(select = "cn.zxw.ssm.dao.PermissionDao.findPermissionsByRid"))
     })
-    Role findBuId(String id);
+    Role findById(String id);
 }

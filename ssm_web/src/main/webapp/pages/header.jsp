@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<script src="${pageContext.request.contextPath}/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script>
+	$(function () {
+		$.ajax({
+			url:"${pageContext.request.contextPath}/user/getUserName.do",
+			type:"post",
+			success:function (data) {
+				$("#name").html(data)
+            }
+		})
+    })
+</script>
 <!-- 页面头部 -->
 <header class="main-header">
 	<!-- Logo -->
@@ -21,8 +32,8 @@
 				<li class="dropdown user user-menu"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown"> <img
 						src="${pageContext.request.contextPath}/img/user2-160x160.jpg"
-						class="user-image" alt="User Image"> <span class="hidden-xs">
-							admin
+						class="user-image" alt="User Image"> <span class="hidden-xs" id="name">
+						dfadfasd
 					</span>
 
 				</a>

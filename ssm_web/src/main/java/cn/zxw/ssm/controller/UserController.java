@@ -18,7 +18,7 @@ import java.util.List;
  * @time 18:39
  */
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired

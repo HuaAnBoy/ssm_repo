@@ -37,4 +37,12 @@ public interface PermissionDao {
      */
     @Insert("insert into permission(permissionName,url) values(#{permissionName},#{url})")
     void save(Permission permission) throws Exception;
+
+    /**
+     * 通过rid查询
+     * @param id
+     * @return
+     */
+    @Select("select * from permission where id in (select permissionId from role_permission where roleId=#{id})")
+    List<Permission> findPermissionsByRid(String id);
 }
